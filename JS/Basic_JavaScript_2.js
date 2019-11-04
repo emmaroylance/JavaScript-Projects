@@ -8,3 +8,11 @@ function myFunction() {
     sentence += " be a great day!";
     document.getElementById("concatenate").innerHTML = sentence;
 }
+function mySecondFunction() {
+    return p1 * p2;
+}
+function theFunction() {
+    var str = "This text is yellow!";
+    var result = str.fontcolor("yellow");
+    document.getElementById("Yellow_Text").innerHTML = result;
+}
