@@ -2,7 +2,7 @@
 //Disable the stop button since it is not neeed until game start.
 window.onload = function() {watch()};
 function watch() {
-    var btn = document.getElementById('btnstop');
+    var btn = document.getElementById('btnStop');
     btnDisabled(btn); // disable the stop button since the game has not started
 }
 
@@ -32,19 +32,19 @@ function rollForTurn() {
     }
     txt1 = "Player 1 rolled ["+pOne+"]<br>";
     writeMsg(txt1);
-    txt = txt + "Player 2 rolled ["+pTwo+"]<br><br>";
-    setTimeout(function() {writeMag(txt1);}, 1000); // time delay for dramatic affect
+    txt1 = txt1 + "Player 2 rolled ["+pTwo+"]<br><br>";
+    setTimeout(function() {writeMsg(txt1);}, 1000); // time delay for dramatic affect
     }
     //determine and concatenate string showing which player won the roll
     if (pOne > pTwo) {
         first = "Player 1";
         setTimeout(function() { txt1 = txt1 + "Player 1 wins, please choose a square.";}, 2000);
-        setTimeout(function() {writeMag(txt1);}, 2000);
+        setTimeout(function() {writeMsg(txt1);}, 2000);
     }
     else if (pOne < pTwo) {
         first = "Player 2";
         setTimeout(function() { txt1 = txt1 + "Player 2 wins, please choose a square"}, 2000);
-        setTimeout(function() {writeMag(txt1);}, 2000);
+        setTimeout(function() {writeMsg(txt1);}, 2000);
     }
     //pass which player won the roll
     return first;
@@ -68,7 +68,7 @@ function startGame() {
 
     //Assign the Active Player to the console
     var showPlayer = document.getElementById('showPlayer')
-    showPlayer.innerHTML = activePLayer;
+    showPlayer.innerHTML = activePlayer;
     showPlayer.style.color = "green";
 }
 
@@ -85,6 +85,14 @@ function stopEnabled(btn) {
     btn.style.color = "#fff";
     btn.style.border = "2px solid rgb(204, 0, 0)";
     btn.style.backgroundColor = "rgb(255, 51, 51)";
+    btn.disabled = false;
+}
+
+//this function styles the game buttons while they are disabled
+function startEnabled(btn) {
+    btn.style.color = "#fff";
+    btn.style.border = "2px solid rgb(0, 153, 0";
+    btn.style.backgroundColor = "rgb(57, 230, 0)";
     btn.disabled = false;
 }
 
@@ -113,8 +121,8 @@ function stopGame() {
 }
 
 //this function will show the message console and any text it may have
-function showGameMag() {
-    document.getElementById('gameMagBox').style.display = 'block';
+function showGameMsg() {
+    document.getElementById('gameMsgBox').style.display = 'block';
 }
 
 //this function will conceal the message console from view
@@ -180,7 +188,7 @@ function avatarPlaced() {
     // check if there is already a winner...if there is, then don't continue the game
     if (parseText == "That's three in a row, Player 1 wins!" || parseText == "That's three in a row, Player 2 wins!") {
         showPlayer.innerHTML = "Game Stopped";
-        showPlayer.style.color='red;'
+        showPlayer.style.color='red';
     }
     activePlayer = showPlayer.innerHTML; // get the current player from the element
     if (activePlayer == "Player 1") { //once active player selects a square change the active player
@@ -240,7 +248,7 @@ function checkForWinCon() {
     checkWinCon6(info,squareArray);
     checkWinCon7(info,squareArray);
     checkWinCon8(info,squareArray);
-    //console.og("New CHECK: "+document.getElementById('gameMsg).innerHTML);
+    //console.log("New CHECK: "+document.getElementById('gameMsg).innerHTML);
     check4Tie();
 }
 
@@ -336,7 +344,7 @@ function squareSound() {
 }
 
 function tieSound() {
-    var sound = document.getElementById('tieGame');
+    var sound = document.getElementById("tieGame");
     var check = document.getElementById('gameMsg').innerHTML;
     setTimeout(function() {sound.play();}, 500);
 }
@@ -428,8 +436,6 @@ function checkWinCon2(info,squareArray) {
     if (match3Avatar != undefined && match4Avatar != undefined && match5Avatar != undefined) {
         if (match3Avatar == match4Avatar && match3Avatar == match5Avatar) {
             winDetected = "win"; // this flag will pass when a win has been detected
-            winner(winDetected,winCon2);
-            return;
         }
     }
     winner(winDetected,winCon2); // winCon2 is the array of win combo
@@ -458,9 +464,6 @@ function checkWinCon3(info,squareArray) {
     // this will trigger (ONLY) if there was a match for index0, index1, and index2
     if (match6Avatar != undefined && match7Avatar != undefined && match8Avatar != undefined) {
         if (match6Avatar == match7Avatar && match6Avatar == match8Avatar) {
-            winDetected = "win"; // this flag will pass when a win has been detected
-            winner(winDetected,winCon3);
-            return;
         }
     }
     winner(winDetected,winCon3); // winCon3 is the array of win combo
@@ -490,8 +493,6 @@ function checkWinCon4(info,squareArray) {
     if (match0Avatar != undefined && match3Avatar != undefined && match6Avatar != undefined) {
         if (match0Avatar == match3Avatar && match0Avatar == match6Avatar) {
             winDetected = "win"; // this flag will pass when a win has been detected
-            winner(winDetected,winCon4);
-            return;
         }
     }
     winner(winDetected,winCon4); // winCon4 is the array of win combo
@@ -521,8 +522,6 @@ function checkWinCon5(info,squareArray) {
     if (match1Avatar != undefined && match4Avatar != undefined && match7Avatar != undefined) {
         if (match1Avatar == match4Avatar && match1Avatar == match7Avatar) {
             winDetected = "win"; // this flag will pass when a win has been detected
-            winner(winDetected,winCon5);
-            return;
         }
     }
     winner(winDetected,winCon5); // winCon5 is the array of win combo
@@ -552,8 +551,6 @@ function checkWinCon6(info,squareArray) {
     if (match2Avatar != undefined && match5Avatar != undefined && match8Avatar != undefined) {
         if (match2Avatar == match5Avatar && match2Avatar == match8Avatar) {
             winDetected = "win"; // this flag will pass when a win has been detected
-            winner(winDetected,winCon6);
-            return;
         }
     }
     winner(winDetected,winCon6); // winCon6 is the array of win combo
@@ -583,8 +580,6 @@ function checkWinCon7(info,squareArray) {
     if (match0Avatar != undefined && match4Avatar != undefined && match8Avatar != undefined) {
         if (match0Avatar == match4Avatar && match0Avatar == match8Avatar) {
             winDetected = "win"; // this flag will pass when a win has been detected
-            winner(winDetected,winCon7);
-            return;
         }
     }
     winner(winDetected,winCon7); // winCon7 is the array of win combo
@@ -613,8 +608,6 @@ function checkWinCon8(info,squareArray) {
     if (match2Avatar != undefined && match4Avatar != undefined && match6Avatar != undefined) {
         if (match2Avatar == match4Avatar && match2Avatar == match6Avatar) {
             winDetected = "win"; // this flag will pass when a win has been detected
-            winner(winDetected,winCon8);
-            return;
         }
     }
     winner(winDetected,winCon8); // winCon8 is the array of win combo
@@ -630,7 +623,7 @@ function square1Animate() {
     var square = "0"; // identify the square selected
     // check if the proposed square is valid
     var verdict = recordMoves(square);
-    if (verdict == undefinted) { // if verdict is empty than the square is unoccupied.
+    if (verdict == undefined) { // if verdict is empty than the square is unoccupied.
         var paintAvatar = determineAvatar(); // get the correct avatar to paint for the active player 
         var selected = document.getElementsByClassName(paintAvatar)[0]; // paint avatar
         if (paintAvatar == "O") { // change these all to ternary statements instead
@@ -653,7 +646,7 @@ function square2Animate() {
     var square = "0"; // identify the square selected
     // check if the proposed square is valid
     var verdict = recordMoves(square);
-    if (verdict == undefinted) { // if verdict is empty than the square is unoccupied.
+    if (verdict == undefined) { // if verdict is empty than the square is unoccupied.
         var paintAvatar = determineAvatar(); // get the correct avatar to paint for the active player 
         var selected = document.getElementsByClassName(paintAvatar)[0]; // paint avatar
         if (paintAvatar == "O") { // change these all to ternary statements instead
@@ -676,7 +669,7 @@ function square3Animate() {
     var square = "0"; // identify the square selected
     // check if the proposed square is valid
     var verdict = recordMoves(square);
-    if (verdict == undefinted) { // if verdict is empty than the square is unoccupied.
+    if (verdict == undefined) { // if verdict is empty than the square is unoccupied.
         var paintAvatar = determineAvatar(); // get the correct avatar to paint for the active player 
         var selected = document.getElementsByClassName(paintAvatar)[0]; // paint avatar
         if (paintAvatar == "O") { // change these all to ternary statements instead
@@ -699,7 +692,7 @@ function square4Animate() {
     var square = "0"; // identify the square selected
     // check if the proposed square is valid
     var verdict = recordMoves(square);
-    if (verdict == undefinted) { // if verdict is empty than the square is unoccupied.
+    if (verdict == undefined) { // if verdict is empty than the square is unoccupied.
         var paintAvatar = determineAvatar(); // get the correct avatar to paint for the active player 
         var selected = document.getElementsByClassName(paintAvatar)[0]; // paint avatar
         if (paintAvatar == "O") { // change these all to ternary statements instead
@@ -722,7 +715,7 @@ function square5Animate() {
     var square = "0"; // identify the square selected
     // check if the proposed square is valid
     var verdict = recordMoves(square);
-    if (verdict == undefinted) { // if verdict is empty than the square is unoccupied.
+    if (verdict == undefined) { // if verdict is empty than the square is unoccupied.
         var paintAvatar = determineAvatar(); // get the correct avatar to paint for the active player 
         var selected = document.getElementsByClassName(paintAvatar)[0]; // paint avatar
         if (paintAvatar == "O") { // change these all to ternary statements instead
@@ -745,7 +738,7 @@ function square6Animate() {
     var square = "0"; // identify the square selected
     // check if the proposed square is valid
     var verdict = recordMoves(square);
-    if (verdict == undefinted) { // if verdict is empty than the square is unoccupied.
+    if (verdict == undefined) { // if verdict is empty than the square is unoccupied.
         var paintAvatar = determineAvatar(); // get the correct avatar to paint for the active player 
         var selected = document.getElementsByClassName(paintAvatar)[0]; // paint avatar
         if (paintAvatar == "O") { // change these all to ternary statements instead
@@ -768,7 +761,7 @@ function square7Animate() {
     var square = "0"; // identify the square selected
     // check if the proposed square is valid
     var verdict = recordMoves(square);
-    if (verdict == undefinted) { // if verdict is empty than the square is unoccupied.
+    if (verdict == undefined) { // if verdict is empty than the square is unoccupied.
         var paintAvatar = determineAvatar(); // get the correct avatar to paint for the active player 
         var selected = document.getElementsByClassName(paintAvatar)[0]; // paint avatar
         if (paintAvatar == "O") { // change these all to ternary statements instead
@@ -791,7 +784,7 @@ function square8Animate() {
     var square = "0"; // identify the square selected
     // check if the proposed square is valid
     var verdict = recordMoves(square);
-    if (verdict == undefinted) { // if verdict is empty than the square is unoccupied.
+    if (verdict == undefined) { // if verdict is empty than the square is unoccupied.
         var paintAvatar = determineAvatar(); // get the correct avatar to paint for the active player 
         var selected = document.getElementsByClassName(paintAvatar)[0]; // paint avatar
         if (paintAvatar == "O") { // change these all to ternary statements instead
@@ -814,7 +807,7 @@ function square9Animate() {
     var square = "0"; // identify the square selected
     // check if the proposed square is valid
     var verdict = recordMoves(square);
-    if (verdict == undefinted) { // if verdict is empty than the square is unoccupied.
+    if (verdict == undefined) { // if verdict is empty than the square is unoccupied.
         var paintAvatar = determineAvatar(); // get the correct avatar to paint for the active player 
         var selected = document.getElementsByClassName(paintAvatar)[0]; // paint avatar
         if (paintAvatar == "O") { // change these all to ternary statements instead
@@ -834,10 +827,10 @@ function square9Animate() {
 
 // this function will perform the animation for the O avatar
 function animateO(selected) {
-    selected.style.transform = (selected.style.transform == "translateY(-100%)" || null) ? "translateY(0)" : "translateY(-100%)";
+    selected.style.transform = (selected.style.transform == "translateY(0%)" || null) ? "translateY(0%)" : "translateY(0%)";
 }
 
 // this function will perform the animation for the X avatar
 function animateX(selected) {
-    selected.style.transform = (selected.style.transform == "translateY(100%)" || null) ? "translateY(0)" : "translateY(100%)";
+    selected.style.transform = (selected.style.transform == "translateY(-100%)" || null) ? "translateY(0%)" : "translateY(-100%)";
 }
