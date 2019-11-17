@@ -17,16 +17,10 @@
     float: right;
 }
 
-.left {
-    width: 200px;
-    height: 200px;
+.column
+{
     float: left;
-}
-
-.right {
-    width: 200px;
-    height: 200px;
-    float: right;
+    width: 33%;
 }
 
 #showText {
@@ -40,16 +34,19 @@
     top:0; margin:0px auto;
     width: 400px;
     height: 200px;
+    text-align: center;
 }
 
 #btnOrder {
     margin: 10px 0px 0px 100px;
     width: 100px;
-    height: 40px
+    height: 40px;
+
 }
 h1 {
     font-family: 'Times New Roman', Times, serif;
     color: white; 
+    text-align: center;
 }
 h3 {
     font-family: 'Courier New', Courier, monospace;
