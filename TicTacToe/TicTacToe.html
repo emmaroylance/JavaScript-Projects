@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-       <title>Tic Tac Toe Game</title> 
-       <META http-equiv="ontent-type" content="text/html" charset="UTF-8">
-       <meta content="width=device-width,initial-scale=1.0" name="viewport">
+        <title>Tic Tac Toe Game</title>
+        <META http-equiv="content-type" content="text/html" charset="UTF-8">
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <link rel="stylesheet" href="css/game.css">
         <style></style>
     </head>
@@ -28,7 +28,7 @@
             <div id="gameMsgBox" onclick="hideGameMsg()"><p id="gameMsg"></p></div>
 
             <div class="console_Left">
-                <div class="displayBox boxLeft">
+                <div class=" displayBox boxLeft">
                     <strong>Current Config:</strong><br><br>
                     <label>Player 1: &nbsp;&nbsp;<span id="p1Display">O</span></label><br>
                     <label>Player 2: &nbsp;&nbsp;<span id="p2Display">X</span></label>
@@ -37,7 +37,7 @@
                 <div id="boardState"></div>
                 <div id="controls">
                     <div id="messageFrame">
-                        <p id="showHeader">ACTIVE PLAYER:</p>
+                        <p id="showHeader">ACTIVE PLAYER</p>
                         <p id="showPlayer">Game Stopped</p>
                     </div>
                 </div>
@@ -139,8 +139,8 @@
         <script>
             var arrayO = document.getElementsByClassName("O");
             var arrayX = document.getElementsByClassName("X");
-            for (var i=0; i<arrayO.length;i++) {
-                arrayO[i].style.transform = "translateY(-100%)"; // this initializes all avatar graphics to not be visible as translateY(0%)
+            for (var i=0; i<arrayO.length; i++) {
+                arrayO[i].style.transform = "translateY(-100%)";
             }
             for (var i=0; i<arrayX.length; i++) {
                 arrayX[i].style.transform = "translateY(100%)";
